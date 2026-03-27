@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Panel – Vortex Markets</title>
+<title>Admin Panel – Riftvol Markets</title>
 <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;600;700;800;900&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <script src="https://cdn.tailwindcss.com"></script>
 <script type="module">
   import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import{getDatabase,ref,get,onValue,update,push,remove,set}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
-  const cfg={apiKey:"AIzaSyB_U4P9bk4ePgIwpM1hVJwOL8F1Go032VA",authDomain:"vortex-broker.firebaseapp.com",databaseURL:"https://vortex-broker-default-rtdb.firebaseio.com",projectId:"vortex-broker",storageBucket:"vortex-broker.firebasestorage.app",messagingSenderId:"485590909637",appId:"1:485590909637:web:b5bd6a98ffbbad1fc7e6"};
+  const cfg={apiKey:"AIzaSyB_U4P9bk4ePgIwpM1hVJwOL8F1Go032VA",authDomain:"Riftvol-broker.firebaseapp.com",databaseURL:"https://Riftvol-broker-default-rtdb.firebaseio.com",projectId:"Riftvol-broker",storageBucket:"Riftvol-broker.firebasestorage.app",messagingSenderId:"485590909637",appId:"1:485590909637:web:b5bd6a98ffbbad1fc7e6"};
   const app=initializeApp(cfg),db=getDatabase(app);
   window.FB={db,ref,get,onValue,update,push,remove,set};
 </script>
@@ -134,7 +134,7 @@ canvas{display:block;}
 
 <div id="preloader">
   <div class="pl-ring"></div>
-  <div class="pl-logo"><b>V</b>ortex Admin</div>
+  <div class="pl-logo"><b>Rift</b>Vol Admin</div>
   <div class="pl-sub">Loading Control Panel</div>
 </div>
 
@@ -143,7 +143,7 @@ canvas{display:block;}
 <!-- SIDEBAR -->
 <aside class="sidebar" id="sidebar">
   <div class="sb-logo">
-    <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:1.15rem;font-weight:900;"><b style="color:var(--red)">V</b>ortex</div>
+    <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:1.15rem;font-weight:900;"><b style="color:var(--red)">Rift</b>Vol</div>
     <div class="admin-badge">ADMIN</div>
   </div>
   <nav style="flex:1;overflow-y:auto;padding:8px;scrollbar-width:none;">
@@ -433,7 +433,7 @@ canvas{display:block;}
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ═══════════════════════════════════════════════════════════════
-   VORTEX ADMIN — COMPLETE
+   Riftvol ADMIN — COMPLETE
    Firebase paths:
      registrations/{userKey}         — user profile data
      transactions/{userKey}/{txnKey} — per-user transactions
