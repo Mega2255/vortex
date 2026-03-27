@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Login – Vortex Markets</title>
+<title>Admin Login – Riftvol Markets</title>
 <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;600;700;800;900&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <script type="module">
   import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import{getDatabase,ref,get,set}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
-  const cfg={apiKey:"AIzaSyB_U4P9bk4ePgIwpM1hVJwOL8F1Go032VA",authDomain:"vortex-broker.firebaseapp.com",databaseURL:"https://vortex-broker-default-rtdb.firebaseio.com",projectId:"vortex-broker",storageBucket:"vortex-broker.firebasestorage.app",messagingSenderId:"485590909637",appId:"1:485590909637:web:b5bd6a98ffbbad1fc7e6"};
+  const cfg={apiKey:"AIzaSyB_U4P9bk4ePgIwpM1hVJwOL8F1Go032VA",authDomain:"Riftvol-broker.firebaseapp.com",databaseURL:"https://Riftvol-broker-default-rtdb.firebaseio.com",projectId:"Riftvol-broker",storageBucket:"Riftvol-broker.firebasestorage.app",messagingSenderId:"485590909637",appId:"1:485590909637:web:b5bd6a98ffbbad1fc7e6"};
   const app=initializeApp(cfg),db=getDatabase(app);
   window.FB={db,ref,get,set};
 </script>
@@ -184,7 +184,7 @@ body::before{
 
 <div id="preloader">
   <div class="pl-ring"></div>
-  <div class="pl-logo"><b>V</b>ortex</div>
+  <div class="pl-logo"><b>Rift</b>Vol</div>
   <div class="pl-sub">Admin Panel</div>
 </div>
 
@@ -196,7 +196,7 @@ body::before{
     <!-- LOGO -->
     <div class="logo-row">
       <div class="logo-mark"><i class="fa-solid fa-shield-halved"></i></div>
-      <div class="logo-title"><b>V</b>ortex Markets</div>
+      <div class="logo-title"><b>Rift</b>Vol Markets</div>
       <div style="display:flex;align-items:center;justify-content:center;gap:7px;margin-top:6px;">
         <div class="logo-sub">Control Panel</div>
         <div class="admin-badge">ADMIN</div>
@@ -251,7 +251,7 @@ body::before{
 
 <script>
 /* ──────────────────────────────────────────────
-   VORTEX ADMIN LOGIN
+   Riftvol ADMIN LOGIN
    Firebase path: platformSettings/adminCredentials
    Fields stored: { username, passwordHash, createdAt, lastLogin }
 
