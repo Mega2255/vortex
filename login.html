@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login – Vortex Markets</title>
+<title>Login – Riftvol Markets</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <script src="https://cdn.tailwindcss.com"></script>
@@ -12,26 +12,30 @@
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getDatabase, ref, query, orderByChild, equalTo, get } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+  import { getAuth, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
   // ── REPLACE WITH YOUR FIREBASE CREDENTIALS ──
   const firebaseConfig = {
   apiKey: "AIzaSyB_U4P9bk4ePgIwpM1hVJwOL8F1Go032VA",
-  authDomain: "vortex-broker.firebaseapp.com",
-  databaseURL: "https://vortex-broker-default-rtdb.firebaseio.com",
-  projectId: "vortex-broker",
-  storageBucket: "vortex-broker.firebasestorage.app",
+  authDomain: "Riftvol-broker.firebaseapp.com",
+  databaseURL: "https://Riftvol-broker-default-rtdb.firebaseio.com",
+  projectId: "Riftvol-broker",
+  storageBucket: "Riftvol-broker.firebasestorage.app",
   messagingSenderId: "485590909637",
   appId: "1:485590909637:web:b5bd6a98ffbbad1fc7e6ac"
 };
 
   const app = initializeApp(firebaseConfig);
   const db  = getDatabase(app);
+  const auth = getAuth(app);
   window._vxDB    = db;
   window._vxRef   = ref;
   window._vxQuery = query;
   window._vxOrderBy = orderByChild;
   window._vxEqualTo = equalTo;
   window._vxGet   = get;
+  window._vxAuth  = auth;
+  window._vxSendReset = sendPasswordResetEmail;
 </script>
 
 <script>
@@ -156,7 +160,7 @@ tailwind.config = {
 <div id="vx-loader">
   <canvas id="plCanvas"></canvas>
   <div class="pl-inner">
-    <div class="pl-logo"><span>V</span>ortex</div>
+    <div class="pl-logo"><span>Rift</span>Vol</div>
     <div class="pl-track"><div class="pl-fill"></div></div>
     <div class="pl-sub">Markets · Trading · Portfolio</div>
   </div>
@@ -173,7 +177,7 @@ tailwind.config = {
   <div class="left-panel hidden lg:flex flex-col justify-between w-[48%] xl:w-[52%] p-10 xl:p-14">
     <!-- Top -->
     <div>
-      <a href="index.html" class="font-display font-bold text-2xl text-vx-red tracking-tight block mb-2">Vortex</a>
+      <a href="index.html" class="font-display font-bold text-2xl text-vx-red tracking-tight block mb-2">Riftvol</a>
       <p class="text-white/30 text-sm">World Leader in Online Trading</p>
     </div>
 
@@ -234,7 +238,7 @@ tailwind.config = {
       <span>·</span>
       <a href="terms.html" class="hover:text-white/50 transition-colors">Terms</a>
       <span>·</span>
-      <span>&copy; 2026 Vortex Technologies Inc.</span>
+      <span>&copy; 2026 Riftvol Technologies Inc.</span>
     </div>
   </div>
 
@@ -243,7 +247,7 @@ tailwind.config = {
 
     <!-- Mobile logo -->
     <div class="lg:hidden mb-8 text-center anim-in d1">
-      <a href="index.html" class="font-display font-bold text-2xl text-vx-red">Vortex</a>
+      <a href="index.html" class="font-display font-bold text-2xl text-vx-red">Riftvol</a>
       <p class="text-white/30 text-xs mt-1">World Leader in Online Trading</p>
     </div>
 
@@ -545,19 +549,41 @@ async function doLogin(){
 async function sendReset(){
   const email=g('forgotEmail').value.trim();
   if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-    g('forgotEmail').classList.add('err');return;
+    g('forgotEmail').classList.add('err');
+    g('forgotEmail').focus();
+    return;
   }
+  g('forgotEmail').classList.remove('err');
   g('resetBtnText').classList.add('hidden');
   g('resetBtnLoad').classList.remove('hidden');
   g('resetBtn').disabled=true;
-  await new Promise(r=>setTimeout(r,1500));
+
   const ra=g('resetAlert'),rm=g('resetMsg');
-  rm.textContent='If this email is registered, a reset link will be sent shortly.';
-  ra.className='alert-box mt-4 ok';
-  ra.querySelector('i').className='fa-solid fa-circle-check text-sm flex-shrink-0';
-  g('resetBtnText').classList.remove('hidden');
-  g('resetBtnLoad').classList.add('hidden');
-  g('resetBtn').disabled=false;
+
+  try{
+    await window._vxSendReset(window._vxAuth, email);
+    rm.textContent='Reset link sent! Check your inbox (and spam folder).';
+    ra.className='alert-box mt-4 ok';
+    ra.querySelector('i').className='fa-solid fa-circle-check text-sm flex-shrink-0';
+    g('forgotEmail').value='';
+  }catch(err){
+    // Firebase returns auth/user-not-found for unknown emails.
+    // We show a neutral message either way to avoid email enumeration.
+    if(err.code==='auth/user-not-found'||err.code==='auth/invalid-email'){
+      rm.textContent='If this email is registered, a reset link will be sent shortly.';
+      ra.className='alert-box mt-4 ok';
+      ra.querySelector('i').className='fa-solid fa-circle-check text-sm flex-shrink-0';
+    } else {
+      rm.textContent='Something went wrong. Please try again later.';
+      ra.className='alert-box mt-4 err';
+      ra.querySelector('i').className='fa-solid fa-circle-exclamation text-sm flex-shrink-0';
+    }
+    console.warn('[Reset]',err.code,err.message);
+  }finally{
+    g('resetBtnText').classList.remove('hidden');
+    g('resetBtnLoad').classList.add('hidden');
+    g('resetBtn').disabled=false;
+  }
 }
 
 // ════ PRE-FILL IF REMEMBERED ════
