@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Open a Live Account – Vortex Markets</title>
+<title>Open a Live Account – Riftvol Markets</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <script src="https://cdn.tailwindcss.com"></script>
@@ -17,10 +17,10 @@
   // ── REPLACE THESE WITH YOUR FIREBASE PROJECT CREDENTIALS ──
   const firebaseConfig = {
   apiKey: "AIzaSyB_U4P9bk4ePgIwpM1hVJwOL8F1Go032VA",
-  authDomain: "vortex-broker.firebaseapp.com",
-  databaseURL: "https://vortex-broker-default-rtdb.firebaseio.com",
-  projectId: "vortex-broker",
-  storageBucket: "vortex-broker.firebasestorage.app",
+  authDomain: "Riftvol-broker.firebaseapp.com",
+  databaseURL: "https://Riftvol-broker-default-rtdb.firebaseio.com",
+  projectId: "Riftvol-broker",
+  storageBucket: "Riftvol-broker.firebasestorage.app",
   messagingSenderId: "485590909637",
   appId: "1:485590909637:web:b5bd6a98ffbbad1fc7e6ac"
 };
@@ -167,7 +167,7 @@ body{font-family:'DM Sans',sans-serif;background:#0a0a0a;color:#fff;overflow-x:h
 <div id="vx-preloader">
   <canvas class="vx-pl-canvas" id="vxPlCanvas"></canvas>
   <div class="vx-pl-center">
-    <div class="vx-pl-logo"><span>V</span>ortex</div>
+    <div class="vx-pl-logo"><span>Rift</span>Vol</div>
     <div class="vx-pl-bar"><div class="vx-pl-bar-fill"></div></div>
     <div class="vx-pl-tagline">Secure Account Setup</div>
   </div>
@@ -177,7 +177,7 @@ body{font-family:'DM Sans',sans-serif;background:#0a0a0a;color:#fff;overflow-x:h
 
 <!-- TOPBAR -->
 <div class="mini-topbar sticky top-0 z-50 px-4 sm:px-8 h-14 flex items-center justify-between">
-  <a href="index.html" class="font-display font-bold text-xl text-vx-red tracking-tight">Vortex</a>
+  <a href="index.html" class="font-display font-bold text-xl text-vx-red tracking-tight">Riftvol</a>
   <div class="flex items-center gap-3">
     <span class="hidden sm:flex items-center gap-2 text-xs text-white/30 font-medium">
       <i class="fa-solid fa-lock text-vx-red/60 text-xs"></i> 256-bit SSL Encrypted
@@ -288,29 +288,7 @@ body{font-family:'DM Sans',sans-serif;background:#0a0a0a;color:#fff;overflow-x:h
           </select>
         </div>
 
-        <div class="mb-5">
-          <label class="vx-label">Nationality <span class="text-vx-red">*</span></label>
-          <select id="nationality" class="vx-select" onchange="liveValidate(this,'select')">
-            <option value="">Select nationality</option>
-          </select>
-          <div class="field-err" id="err-nationality">Please select your nationality</div>
-        </div>
 
-        <div class="mb-5">
-          <label class="vx-label">Country of Birth <span class="text-vx-red">*</span></label>
-          <select id="countryOfBirth" class="vx-select" onchange="liveValidate(this,'select')">
-            <option value="">Select country</option>
-          </select>
-          <div class="field-err" id="err-countryOfBirth">Please select your country of birth</div>
-        </div>
-
-        <div class="mb-6">
-          <label class="vx-label">Country of Tax Residence <span class="text-vx-red">*</span></label>
-          <select id="taxResidence" class="vx-select" onchange="liveValidate(this,'select')">
-            <option value="">Select country</option>
-          </select>
-          <div class="field-err" id="err-taxResidence">Please select your country of tax residence</div>
-        </div>
 
         <button class="btn-submit" onclick="nextStep(1)">Continue <i class="fa-solid fa-arrow-right ml-2 text-sm"></i></button>
       </div>
@@ -409,109 +387,16 @@ body{font-family:'DM Sans',sans-serif;background:#0a0a0a;color:#fff;overflow-x:h
         </div>
       </div>
 
-      <!-- ══ STEP 3: Financial Profile ══ -->
+      <!-- ══ STEP 3: Trading Preferences (KYC financial data removed for project scope) ══ -->
       <div class="form-panel" id="panel3">
         <div class="flex items-center gap-3 mb-6">
           <div class="w-9 h-9 rounded-xl bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
             <i class="fa-solid fa-chart-line text-emerald-400 text-sm"></i>
           </div>
           <div>
-            <h2 class="font-display font-bold text-lg text-white">Financial Profile</h2>
-            <p class="text-white/35 text-xs">Required for suitability assessment</p>
+            <h2 class="font-display font-bold text-lg text-white">Trading Preferences</h2>
+            <p class="text-white/35 text-xs">Tell us about your trading background</p>
           </div>
-        </div>
-
-        <div class="mb-5">
-          <label class="vx-label">Employment Status <span class="text-vx-red">*</span></label>
-          <select id="employment" class="vx-select" onchange="liveValidate(this,'select');toggleEmployer(this.value)">
-            <option value="">Select status</option>
-            <option value="Employed (Full-time)">Employed (Full-time)</option>
-            <option value="Employed (Part-time)">Employed (Part-time)</option>
-            <option value="Self-Employed / Business Owner">Self-Employed / Business Owner</option>
-            <option value="Retired">Retired</option>
-            <option value="Student">Student</option>
-            <option value="Currently Unemployed">Currently Unemployed</option>
-            <option value="Homemaker">Homemaker</option>
-            <option value="Other">Other</option>
-          </select>
-          <div class="field-err" id="err-employment">Please select your employment status</div>
-        </div>
-
-        <div class="mb-5" id="employerBlock" style="display:none">
-          <label class="vx-label">Industry / Sector</label>
-          <select id="industry" class="vx-select">
-            <option value="">Select industry</option>
-            <option value="Banking & Finance">Banking & Finance</option>
-            <option value="Technology">Technology</option>
-            <option value="Healthcare">Healthcare & Pharmaceuticals</option>
-            <option value="Education">Education</option>
-            <option value="Government">Government & Public Sector</option>
-            <option value="Energy">Energy & Resources</option>
-            <option value="Legal">Legal & Professional Services</option>
-            <option value="Retail">Retail & Consumer</option>
-            <option value="Manufacturing">Manufacturing & Engineering</option>
-            <option value="Media">Media & Entertainment</option>
-            <option value="Real Estate">Real Estate & Construction</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-
-        <div class="mb-5">
-          <label class="vx-label">Annual Income (USD equivalent) <span class="text-vx-red">*</span></label>
-          <select id="income" class="vx-select" onchange="liveValidate(this,'select')">
-            <option value="">Select range</option>
-            <option value="Under $25,000">Under $25,000</option>
-            <option value="$25,000 – $50,000">$25,000 – $50,000</option>
-            <option value="$50,000 – $100,000">$50,000 – $100,000</option>
-            <option value="$100,000 – $250,000">$100,000 – $250,000</option>
-            <option value="$250,000 – $500,000">$250,000 – $500,000</option>
-            <option value="Over $500,000">Over $500,000</option>
-          </select>
-          <div class="field-err" id="err-income">Please select your income range</div>
-        </div>
-
-        <div class="mb-5">
-          <label class="vx-label">Total Net Worth (USD equivalent) <span class="text-vx-red">*</span></label>
-          <select id="netWorth" class="vx-select" onchange="liveValidate(this,'select')">
-            <option value="">Select range</option>
-            <option value="Under $50,000">Under $50,000</option>
-            <option value="$50,000 – $250,000">$50,000 – $250,000</option>
-            <option value="$250,000 – $500,000">$250,000 – $500,000</option>
-            <option value="$500,000 – $1,000,000">$500,000 – $1,000,000</option>
-            <option value="$1,000,000 – $5,000,000">$1,000,000 – $5,000,000</option>
-            <option value="Over $5,000,000">Over $5,000,000</option>
-          </select>
-          <div class="field-err" id="err-netWorth">Please select your net worth range</div>
-        </div>
-
-        <div class="mb-5">
-          <label class="vx-label">Primary Source of Funds <span class="text-vx-red">*</span></label>
-          <select id="sourceOfFunds" class="vx-select" onchange="liveValidate(this,'select')">
-            <option value="">Select source</option>
-            <option value="Employment / Salary">Employment / Salary</option>
-            <option value="Business Income">Business Income</option>
-            <option value="Investment Returns">Investment Returns</option>
-            <option value="Inheritance / Gift">Inheritance / Gift</option>
-            <option value="Personal Savings">Personal Savings</option>
-            <option value="Property Sale">Property Sale</option>
-            <option value="Pension / Retirement Fund">Pension / Retirement Fund</option>
-            <option value="Other">Other</option>
-          </select>
-          <div class="field-err" id="err-sourceOfFunds">Please select your source of funds</div>
-        </div>
-
-        <div class="mb-5">
-          <label class="vx-label">Expected Initial Deposit <span class="text-vx-red">*</span></label>
-          <select id="initialDeposit" class="vx-select" onchange="liveValidate(this,'select')">
-            <option value="">Select amount</option>
-            <option value="Under $1,000">Under $1,000</option>
-            <option value="$1,000 – $5,000">$1,000 – $5,000</option>
-            <option value="$5,000 – $10,000">$5,000 – $10,000</option>
-            <option value="$10,000 – $50,000">$10,000 – $50,000</option>
-            <option value="$50,000 – $100,000">$50,000 – $100,000</option>
-            <option value="Over $100,000">Over $100,000</option>
-          </select>
-          <div class="field-err" id="err-initialDeposit">Please select expected deposit amount</div>
         </div>
 
         <div class="mb-6">
@@ -523,24 +408,8 @@ body{font-family:'DM Sans',sans-serif;background:#0a0a0a;color:#fff;overflow-x:h
             <option value="Intermediate (1–3 years)">Intermediate (1–3 years)</option>
             <option value="Experienced (3–5 years)">Experienced (3–5 years)</option>
             <option value="Expert (5+ years)">Expert (5+ years)</option>
-            <option value="Professional / Institutional">Professional / Institutional</option>
           </select>
           <div class="field-err" id="err-experience">Please select your experience level</div>
-        </div>
-
-        <div class="mb-6 p-4 rounded-xl bg-orange-500/5 border border-orange-500/15">
-          <div class="flex items-start gap-3 mb-3">
-            <i class="fa-solid fa-shield-halved text-orange-400/70 mt-0.5 text-sm flex-shrink-0"></i>
-            <div>
-              <p class="text-xs font-bold text-orange-300/70 uppercase tracking-wider mb-1">Politically Exposed Person (PEP)</p>
-              <p class="text-xs text-white/30 leading-relaxed">Are you, or is any close associate or family member, a current or former politically exposed person, head of state, senior government official or public figure?</p>
-            </div>
-          </div>
-          <div class="flex gap-2">
-            <label class="choice-card flex-1" onclick="selectChoice(this,'pep')"><input type="radio" name="pep" value="No"><div class="choice-dot"></div><span class="text-sm text-white/70 font-medium">No</span></label>
-            <label class="choice-card flex-1" onclick="selectChoice(this,'pep')"><input type="radio" name="pep" value="Yes"><div class="choice-dot"></div><span class="text-sm text-white/70 font-medium">Yes</span></label>
-          </div>
-          <div class="field-err" id="err-pep">Please make a declaration</div>
         </div>
 
         <div class="flex gap-3">
@@ -696,14 +565,13 @@ body{font-family:'DM Sans',sans-serif;background:#0a0a0a;color:#fff;overflow-x:h
           <label class="vx-check">
             <input type="checkbox" id="agreeMarketing" onchange="syncCheckbox(this)">
             <div class="check-box"><i class="fa-solid fa-check"></i></div>
-            <span class="check-label">I agree to receive marketing communications, promotions and updates from Vortex Markets by email or phone. <span class="text-white/25">(optional)</span></span>
+            <span class="check-label">I agree to receive marketing communications, promotions and updates from Riftvol Markets by email or phone. <span class="text-white/25">(optional)</span></span>
           </label>
         </div>
 
-        <div class="grid grid-cols-3 gap-2 mb-6">
-          <div class="trust-item"><i class="fa-solid fa-shield-halved text-vx-red text-xs flex-shrink-0"></i><span class="text-xs text-white/35 font-medium">FCA Regulated</span></div>
-          <div class="trust-item"><i class="fa-solid fa-lock text-vx-red text-xs flex-shrink-0"></i><span class="text-xs text-white/35 font-medium hidden sm:inline">256-bit Encryption</span><span class="text-xs text-white/35 font-medium sm:hidden">Encrypted</span></div>
-          <div class="trust-item"><i class="fa-solid fa-building-columns text-vx-red text-xs flex-shrink-0"></i><span class="text-xs text-white/35 font-medium hidden sm:inline">Segregated Funds</span><span class="text-xs text-white/35 font-medium sm:hidden">Segregated</span></div>
+        <div class="grid grid-cols-2 gap-2 mb-6">
+          <div class="trust-item"><i class="fa-solid fa-lock text-vx-red text-xs flex-shrink-0"></i><span class="text-xs text-white/35 font-medium">256-bit Encryption</span></div>
+          <div class="trust-item"><i class="fa-solid fa-shield-halved text-vx-red text-xs flex-shrink-0"></i><span class="text-xs text-white/35 font-medium">Secure Account</span></div>
         </div>
 
         <div class="flex gap-3">
@@ -739,7 +607,7 @@ body{font-family:'DM Sans',sans-serif;background:#0a0a0a;color:#fff;overflow-x:h
       By creating an account you confirm you have read our <a href="terms.html" class="text-white/35 hover:text-white/60 transition-colors">Terms of Use</a>,
       <a href="privacy.html" class="text-white/35 hover:text-white/60 transition-colors">Privacy Policy</a> and
       <a href="terms-agreement.html" class="text-white/35 hover:text-white/60 transition-colors">Risk Disclosure</a>.
-      Vortex Markets Ltd is authorised and regulated by the FCA.
+      This is a student project demo — not a real financial service.
     </p>
   </div>
 </div>
@@ -845,7 +713,7 @@ function validateStep(step){
   };
   if(step===1){reqRadio('title');req('firstName','name');req('lastName','name');req('dob','text');req('nationality','select');req('countryOfBirth','select');req('taxResidence','select');}
   if(step===2){req('email','email');req('phone','phone');req('address1','text');req('city','text');req('postcode','text');req('country','select');}
-  if(step===3){req('employment','select');req('income','select');req('netWorth','select');req('sourceOfFunds','select');req('initialDeposit','select');req('experience','select');reqRadio('pep');}
+  if(step===3){req('experience','select');}
   if(step===4){reqRadio('baseCurrency');}
   if(step===5){req('username','username');req('password','pass');req('confirmPass','confirmPass');req('withdrawalPin','pin');req('secQuestion','select');req('secAnswer','text');reqCheck('agreeTerms');reqCheck('agreePrivacy');reqCheck('agreeRisk');}
   return valid;
@@ -890,8 +758,18 @@ const g=id=>{const e=document.getElementById(id);return e?e.value.trim():'';};
 const radio=name=>{const c=document.querySelector(`input[name="${name}"]:checked`);return c?c.value:'';};
 const chk=id=>{const e=document.getElementById(id);return e?e.checked:false;};
 
+// ════ SHA-256 HASHING UTILITY ════
+async function sha256(str){
+  const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
 // ════ COLLECT ALL FORM DATA ════
-function collectFormData(){
+async function collectFormData(){
+  const [hashedPassword, hashedPin] = await Promise.all([
+    sha256(g('password')),
+    sha256(g('withdrawalPin'))
+  ]);
   return {
     meta:{
       submittedAt:   new Date().toISOString(),
@@ -909,9 +787,7 @@ function collectFormData(){
       fullName:       (g('firstName')+' '+g('lastName')).trim(),
       dateOfBirth:    g('dob'),
       gender:         g('gender') || 'Not specified',
-      nationality:    g('nationality'),
-      countryOfBirth: g('countryOfBirth'),
-      taxResidence:   g('taxResidence')
+
     },
     contact:{
       email:        g('email'),
@@ -925,15 +801,8 @@ function collectFormData(){
       postcode:     g('postcode'),
       country:      g('country')
     },
-    financial:{
-      employmentStatus:  g('employment'),
-      industry:          g('industry') || 'N/A',
-      annualIncome:      g('income'),
-      netWorth:          g('netWorth'),
-      sourceOfFunds:     g('sourceOfFunds'),
-      initialDeposit:    g('initialDeposit'),
-      tradingExperience: g('experience'),
-      isPEP:             radio('pep')
+    trading:{
+      tradingExperience: g('experience')
     },
     preferences:{
       baseCurrency:   radio('baseCurrency'),
@@ -941,8 +810,8 @@ function collectFormData(){
     },
     account:{
       username:         g('username'),
-      password:         g('password'),
-      withdrawalPin:    g('withdrawalPin'),
+      password:         hashedPassword,   // SHA-256 hash — never plain text
+      withdrawalPin:    hashedPin,         // SHA-256 hash — never plain text
       securityQuestion: g('secQuestion'),
       securityAnswer:   g('secAnswer'),
       promoCode:        g('promoCode') || '',
@@ -965,7 +834,7 @@ async function submitForm(){
   txt.classList.add('hidden');
   ldr.classList.remove('hidden');
 
-  const data=collectFormData();
+  const data=await collectFormData();
 
   // ── Save every field to Firebase Realtime Database ──
   let saved=false;
